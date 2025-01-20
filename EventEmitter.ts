@@ -16,9 +16,11 @@ export class EventEmitter {
   }
 
   off(eventName: string, listener: Listener) {
-    this.events[eventName] = this.events[eventName].filter(
-      (currentListener) => currentListener !== listener
-    );
+    if (this.events[eventName]) {
+      this.events[eventName] = this.events[eventName].filter(
+        (currentListener) => currentListener !== listener
+      );
+    }
   }
 
   emit(eventName: string, ...args: any[]) {
